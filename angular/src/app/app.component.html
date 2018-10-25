@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <a class="navbar-brand" routerLink="/">
+    <img [src]="logoUrl" style="width:40px" /> {{title}}
+  </a>
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/listContacts">
+        <fa name="users"></fa>
+        List Contacts</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/addContact">
+        <fa name="user-plus"></fa>
+        New Contact</a>
+    </li>
+  </ul>
+
+  <form class="form-inline">
+      <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary" 
+              (click)="doChangeField('emailId',srch)">
+                <fa name="envelope"></fa>
+              </button>
+              <button type="button" class="btn btn-primary" 
+              (click)="doChangeField('mobileNumber',srch)">
+                <fa name="mobile"></fa>
+              </button>
+              <button type="button" class="btn btn-primary" 
+              (click)="doChangeField('lastName',srch)">
+                <fa name="user"></fa>
+              </button>
+            </div>
+          </div>
+          <input type="email" name="srchValue" class="form-control" 
+          [(ngModel)]="srchValue"
+          required #srch placeholder="Email Id" />
+          <div class="input-group-prepend">
+            <button class="btn btn-primary" (click)="doSearch()">
+              <fa name="search"></fa>
+            </button>
+          </div>
+        </div>
+  </form>
+</nav>
+<router-outlet></router-outlet>

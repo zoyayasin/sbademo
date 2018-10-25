@@ -1,0 +1,53 @@
+<div class="container mt-2">
+  <div class="row">
+    <div class="col-sm-9 m-auto" *ngIf="!contact">
+      <h3>
+        <fa name="cog" animation="spin"></fa> Loading
+      </h3>
+    </div>
+    <div class="col-sm-9 m-auto" *ngIf="contact">
+      <h3 class="mb-5 mt-5">
+        <fa name="address-card"></fa>
+        Contact Details
+      </h3>
+      <div class="card">
+        <div class="card-header">
+          <h5 class="float-left">{{contact.firstName}} {{contact.lastName}}</h5>
+          <div class="btn-group float-right">
+            <a routerLink="/editContact/{{contact.contactId}}" class="btn">
+              <fa name="edit"></fa>
+            </a>
+            <a routerLink="/delContact/{{contact.contactId}}" class="btn">
+              <fa name="trash"></fa>
+            </a>
+
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-3">
+              <img [src]="contact.gender=='GENT'?gentLogo:ladyLogo" class="img-fluid" />
+            </div>
+            <div class="col-md-9">
+
+              <p>
+                <fa name="envelope"></fa>
+                <strong>Mail Id : </strong>{{contact.emailId}}
+              </p>
+              <p>
+                <fa name="mobile"></fa>
+                <strong>Mobile No. : </strong>{{contact.mobileNumber}}
+              </p>
+              <p>
+                <fa name="calendar"></fa>
+                <strong>Date of birth : </strong>{{contact.dateOfBirth}}
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
