@@ -1,0 +1,35 @@
+<div class="container mt-2">
+  <div class="row">
+    <div class="col-sm-9 m-auto" *ngIf="!contact">
+      <h3>
+        <fa name="cog" animation="spin"></fa> Loading
+      </h3>
+    </div>
+    <div class="col-sm-9 m-auto" *ngIf="contact">
+      <h3 class="mb-5 mt-5">
+        <fa name="trash"></fa>
+        Contact Delete Confirmation
+      </h3>
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">
+            Are you sure you wanna delete Contact#{{contact.contactId}}?
+          </h3>
+          <p class="alert alert-warning">
+            <fa name="exclamation"></fa>
+            Details of <Strong>{{contact.firstName}} {{contact.lastName}}</Strong>
+            will be perminantly erased and can not undone once you confirm
+          </p>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary mr-3" (click)="doDelete(false)">
+            No! Cancel Operation
+          </button>
+          <button class="btn btn-danger" (click)="doDelete(true)">
+            Yes! Delete For Sure
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="jumbotron">
+  <header class="container-fluid">
+    <h1>
+      <img [src]="logoUrl" class="img-fluid" style="width:5%" /> {{title}}
+    </h1>
+  </header>
+</div>
+<div class="container">
+
+  <div class="alert alert-info p-4" *ngIf="msg">
+    <fa name="info"></fa> {{msg}}
+  </div>
+
+  <div class="row">
+    <div class="col-sm-1 ml-2" *ngFor="let g of ['GENT','LADY']">
+      <div class="card bg-light " >
+        <img class="card-img-top" [src]="g=='GENT'?gentLogo:ladyLogo" />
+        <div class="card-body text-center">
+          <h3>
+            {{contacts|genderCount:g}} 
+          </h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1 ml-2">
+      <div class="card bg-light ">
+        <img class="card-img-top" [src]="birthLogo" />
+        <div class="card-body text-center">
+          <h3>
+            {{(contacts|bornToday).length}} 
+          </h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1 ml-2">
+        <div class="card bg-light ">
+           <img class="card-img-top" [src]="logoUrl" />
+          <div class="card-body text-center">
+            <h3>
+              {{contacts.length}} 
+            </h3>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

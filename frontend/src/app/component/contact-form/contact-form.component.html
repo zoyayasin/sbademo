@@ -1,0 +1,118 @@
+<div class="container mt-2">
+  <div class="row">
+    <div class="col-sm-9 m-auto">
+      <h3 class="mb-5 mt-5">
+
+        <fa name="{{isEditing?'edit':'user-plus'}}"></fa>
+        {{isEditing?"Edit":"New"}} 
+        
+        Contact</h3>
+
+      <form class="form" #f="ngForm" novalidate (ngSubmit)="f.valid && save()">
+        <div class="mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <fa name="user"></fa>
+              </span>
+            </div>
+            <input type="text" class="form-control" id="fnm" name="fnm" required minlength="5" maxlength="15"
+              [(ngModel)]="contact.firstName" #fnm=ngModel placeholder="First Name" />
+            <input type="text" class="form-control" id="lnm" name="lnm" required minlength="5" maxlength="15"
+              [(ngModel)]="contact.lastName" #lnm=ngModel placeholder="Last Name" />
+          </div>
+          <div class="alert alert-danger" *ngIf="(fnm.errors && (fnm.touched || fnm.darty))||(lnm.errors && (lnm.touched || lnm.darty))">
+            <p *ngIf="(fnm.errors && (fnm.touched || fnm.darty))">Please see that First Name <strong>
+                <span *ngIf="fnm.errors.required">is not left blank</span>
+                <span *ngIf="fnm.errors.minlength">is atleast 5 chars in length</span>
+              </strong>
+            </p>
+            <p *ngIf="(lnm.errors && (lnm.touched || lnm.darty))">Please see that Last Name <strong>
+                <span *ngIf="lnm.errors.required">is not left blank</span>
+                <span *ngIf="lnm.errors.minlength">is atleast 5 chars in length</span>
+              </strong>
+            </p>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <fa name="mobile"></fa>
+              </span>
+            </div>
+            <input type="text" class="form-control" id="mno" name="mno" required pattern="\d{10}" [(ngModel)]="contact.mobileNumber"
+              #mno=ngModel />
+          </div>
+          <div class="alert alert-danger" *ngIf="mno.errors && (mno.touched || mno.darty)">
+            <p>Please see that Mobile Number <strong>
+                <span *ngIf="mno.errors.required">is not left blank</span>
+                <span *ngIf="mno.errors.pattern">is exactly 10 digits only</span>
+              </strong>
+            </p>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <fa name="envelope"></fa>
+              </span>
+            </div>
+            <input type="email" class="form-control" id="mail" name="mail" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+              [(ngModel)]="contact.emailId" #mail=ngModel />
+          </div>
+          <div class="alert alert-danger" *ngIf="mail.errors && (mail.touched || mail.darty)">
+            <p>Please see that Email ID <strong>
+                <span *ngIf="mail.errors.required">is not left blank</span>
+                <span *ngIf="mail.errors.pattern">is of correct format</span>
+              </strong>
+            </p>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <fa name="user"></fa>
+              </span>
+            </div>
+            <div class="form-check-inline">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="gender" value="GENT" required [(ngModel)]="contact.gender"
+                  #gender=ngModel />Gent
+              </label>
+            </div>
+            <div class="form-check-inline">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="gender" value="LADY" required [(ngModel)]="contact.gender"
+                  #gender=ngModel />Lady
+              </label>
+            </div>
+          </div>
+          <div class="alert alert-danger" *ngIf="gender.invalid">
+            <p>Please see that Gender <strong>is selected</strong>
+            </p>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <fa name="calendar"></fa>
+              </span>
+            </div>
+            <input type="date" class="form-control" id="dob" name="dob" required [(ngModel)]="contact.dateOfBirth" #dob=ngModel />
+          </div>
+          <div class="alert alert-danger" *ngIf="dob.errors.required && (dob.touched || dob.dirty)">
+            <p>Please see that date of birth <strong>is not left blank</strong>
+            </p>
+          </div>
+        </div>
+        <div>
+          <button class="btn btn-block btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
